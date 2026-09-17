@@ -23,7 +23,7 @@ class Shoal < Formula
         #{opt_bin}/shoal skill install
 
       Register the per-user daemon:
-        #{opt_bin}/shoal setup --executable #{opt_bin}/shoal
+        shoal setup
 
       After upgrading, restart the daemon:
         #{opt_bin}/shoal daemon restart
