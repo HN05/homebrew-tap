@@ -1,8 +1,8 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  url "https://github.com/HN05/shoal.git", tag: "v0.1.0"
-  version "0.1.0"
+  url "https://github.com/HN05/shoal.git", tag: "v0.1.2", revision: "6943b8155f8f29cfe6d98176e64f8b7f247c3bc2"
+  version "0.1.2"
   license "MIT"
   head "https://github.com/HN05/shoal.git", branch: "main"
 
