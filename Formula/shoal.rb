@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: e297447ba659302e4b09726d2379db3d64bbfa08
-  version "0.4.0"
+  # Release commit: 5836042af5e313fd78181b33d27feeae27cfc663
+  version "0.4.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.4.0/shoal-v0.4.0-macos-arm64.tar.gz"
-      sha256 "4648da4ba7085a9f34576103f30d57fec38ebe94d5484b95633f01338a080e6e"
+      url "https://github.com/HN05/shoal/releases/download/v0.4.1/shoal-v0.4.1-macos-arm64.tar.gz"
+      sha256 "c41e838ee9d362cb035516f1adae0793a133cec32468dbe3cba8728eb739c617"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.4.0/shoal-v0.4.0-macos-x86_64.tar.gz"
-      sha256 "eac12adcf39cb1b17bcad545a7aa1a3f3f4a861e2e3c1c57fad65b2a94e88b9f"
+      url "https://github.com/HN05/shoal/releases/download/v0.4.1/shoal-v0.4.1-macos-x86_64.tar.gz"
+      sha256 "7bfdbee400e168319fb57328879579027cdf0b7848d876e085211fc6873a1da8"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.4.0/shoal-v0.4.0-linux-arm64.tar.gz"
-      sha256 "8ecdadad05003f3a07dfcd2b85b9cfca371a4621399b45e6fdda7b69aef540c8"
+      url "https://github.com/HN05/shoal/releases/download/v0.4.1/shoal-v0.4.1-linux-arm64.tar.gz"
+      sha256 "3bd56ead487dd75f87a233e86385be3022d27a0b6a84186aaf0606d6818ac736"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.4.0/shoal-v0.4.0-linux-x86_64.tar.gz"
-      sha256 "536c563740cdcf78a4f64c9c03c6fb19096221e9e3264429e81da80c336fa3fe"
+      url "https://github.com/HN05/shoal/releases/download/v0.4.1/shoal-v0.4.1-linux-x86_64.tar.gz"
+      sha256 "708c375a2a8e5bf252c2b840e0ec0e64249a8d7af0fb72192ee2d293e0e4be40"
     end
   end
 
@@ -43,8 +43,8 @@ class Shoal < Formula
     else
       libexec.install "shoal"
       (share/"shoal/skill").install "SKILL.md"
-      (bin/"shoal").write_env_script opt_libexec/"shoal",
-                                    SHOAL_SKILL_PATH: opt_share/"shoal/skill/SKILL.md"
+      (libexec/"shoal-skill").make_symlink opt_share/"shoal/skill/SKILL.md"
+      bin.install_symlink libexec/"shoal"
     end
   end
 
