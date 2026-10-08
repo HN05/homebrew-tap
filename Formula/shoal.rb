@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 3fae7e951baf3aaa8b47895d33ad7f2848fc81cb
-  version "0.6.2"
+  # Release commit: 8f88f68bb801081c6a309c7b73470fe4a37a6021
+  version "0.7.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.6.2/shoal-v0.6.2-macos-arm64.tar.gz"
-      sha256 "e5a86fb6a1c491cedd038c687e8962367ac0e376c18d72286179b7f39d786514"
+      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-macos-arm64.tar.gz"
+      sha256 "74a8c759e1f55bc41d1999fc188d6619a1f4358750c77344f710777cbe98e5de"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.6.2/shoal-v0.6.2-macos-x86_64.tar.gz"
-      sha256 "26816dbacee47afee93caab303f080dadfbb321afe0a284e06e25c873aef67af"
+      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-macos-x86_64.tar.gz"
+      sha256 "e8a53164a0374334f6770501c12f324783008b05d051e52db14303072ddb65e5"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.6.2/shoal-v0.6.2-linux-arm64.tar.gz"
-      sha256 "be4e3ebdfb54027a1fdd5225bde38aea72b629f7fb0847d1de03d20767dee0da"
+      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-linux-arm64.tar.gz"
+      sha256 "eb4c5db445a67ea1ee17c23b38e2669c84d828c462653883a1a8e876ffb1f791"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.6.2/shoal-v0.6.2-linux-x86_64.tar.gz"
-      sha256 "87cc19f8bb8dfd5b5c009aac9da1db59a0c323f60ec50f007c51fec67b01630b"
+      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-linux-x86_64.tar.gz"
+      sha256 "4d4dc33ce350c1e87c4251b27b9a321c4527acc0bbe7a258a1add53e95ba1ed1"
     end
   end
 
@@ -42,34 +42,38 @@ class Shoal < Formula
                      "--jobs", ENV.make_jobs.to_s
     else
       libexec.install "shoal"
-      (share/"shoal/skill").install "SKILL.md"
-      (libexec/"shoal-skill").make_symlink opt_share/"shoal/skill/SKILL.md"
+      (share/"shoal").install "skills"
+      (libexec/"shoal-skills").make_symlink opt_share/"shoal/skills"
       bin.install_symlink libexec/"shoal"
     end
   end
 
   def caveats
     <<~EOS
-      Install the agent skill once (it follows future Homebrew upgrades):
+      Install the agent skills once (they follow future Homebrew upgrades):
         #{opt_bin}/shoal skill install
 
       Register the per-user daemon:
         shoal install
 
-      After upgrading, restart the daemon:
+      The managed daemon applies upgrades when its clients and operations are idle.
+      To apply an upgrade immediately, restart the daemon:
         #{opt_bin}/shoal daemon restart
     EOS
   end
 
   test do
     assert_match "shoal", shell_output("#{bin}/shoal --version")
-    assert_match "name: shoal", shell_output("#{bin}/shoal skill")
+    assert_match "name: shoal-worker", shell_output("#{bin}/shoal skill")
+    assert_match "name: shoal-orchestrator", shell_output("#{bin}/shoal skill orchestrator")
     ENV["HOME"] = testpath.to_s
     ENV.delete "SHOAL_SCOPE_TOKEN"
     system bin/"shoal", "skill", "install", "codex"
-    installed = testpath/".agents/skills/shoal/SKILL.md"
-    assert_predicate installed, :symlink?
-    assert_equal (opt_share/"shoal/skill/SKILL.md").to_s, installed.readlink.to_s
-    assert_equal (share/"shoal/skill/SKILL.md").read, installed.read
+    %w[shoal-worker shoal-orchestrator].each do |skill|
+      installed = testpath/".agents/skills/#{skill}/SKILL.md"
+      assert_predicate installed, :symlink?
+      assert_equal (opt_share/"shoal/skills/#{skill}/SKILL.md").to_s, installed.readlink.to_s
+      assert_equal (share/"shoal/skills/#{skill}/SKILL.md").read, installed.read
+    end
   end
 end
