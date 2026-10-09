@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 8f88f68bb801081c6a309c7b73470fe4a37a6021
-  version "0.7.0"
+  # Release commit: 3867f8e73d6f5c8f0d2d09db3b5ebb4f92bec368
+  version "0.8.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-macos-arm64.tar.gz"
-      sha256 "74a8c759e1f55bc41d1999fc188d6619a1f4358750c77344f710777cbe98e5de"
+      url "https://github.com/HN05/shoal/releases/download/v0.8.1/shoal-v0.8.1-macos-arm64.tar.gz"
+      sha256 "817d35a776ab03e8ecefc3ee6901c4463cfa4d6f16c833eec4671f469b95ebfd"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-macos-x86_64.tar.gz"
-      sha256 "e8a53164a0374334f6770501c12f324783008b05d051e52db14303072ddb65e5"
+      url "https://github.com/HN05/shoal/releases/download/v0.8.1/shoal-v0.8.1-macos-x86_64.tar.gz"
+      sha256 "1d0e66cbfcf41e2655d814a32bc1158a9507372ebd83899329190c8a00789025"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-linux-arm64.tar.gz"
-      sha256 "eb4c5db445a67ea1ee17c23b38e2669c84d828c462653883a1a8e876ffb1f791"
+      url "https://github.com/HN05/shoal/releases/download/v0.8.1/shoal-v0.8.1-linux-arm64.tar.gz"
+      sha256 "7bfe832e2246cf0684f6df7363a45ec09230919899a3ffb2a930c96a80845c0b"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.7.0/shoal-v0.7.0-linux-x86_64.tar.gz"
-      sha256 "4d4dc33ce350c1e87c4251b27b9a321c4527acc0bbe7a258a1add53e95ba1ed1"
+      url "https://github.com/HN05/shoal/releases/download/v0.8.1/shoal-v0.8.1-linux-x86_64.tar.gz"
+      sha256 "d6d577fb9e633c0638c4b19c720e950bdf502a890e89562f3879188356d6d7f3"
     end
   end
 
@@ -50,8 +50,10 @@ class Shoal < Formula
 
   def caveats
     <<~EOS
-      Install the agent skills once (they follow future Homebrew upgrades):
+      Install the agent skills once (they follow future Homebrew upgrades).
+      This fills existing skill directories; name a tool to create its directory:
         #{opt_bin}/shoal skill install
+        #{opt_bin}/shoal skill install claude
 
       Register the per-user daemon:
         shoal install
