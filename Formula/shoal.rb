@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 198ce0c4279c25330fda9776e3b77ae59b303cb3
-  version "0.8.2"
+  # Release commit: a56f91ccd660811f512b094e9fa96eb92ad58177
+  version "0.9.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.8.2/shoal-v0.8.2-macos-arm64.tar.gz"
-      sha256 "7c2b1bfefd9132ab3ded9cf66ec7fafdee32627f0b5d3a132f229db88b2859c0"
+      url "https://github.com/HN05/shoal/releases/download/v0.9.0/shoal-v0.9.0-macos-arm64.tar.gz"
+      sha256 "96028b4b29048970d7a86c21faf7727b3156db3439b30522b02df02670782645"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.8.2/shoal-v0.8.2-macos-x86_64.tar.gz"
-      sha256 "ad314ec86327fa136093f165188b3166ae8fd4963435971cb896070e6b61963f"
+      url "https://github.com/HN05/shoal/releases/download/v0.9.0/shoal-v0.9.0-macos-x86_64.tar.gz"
+      sha256 "5e7ce39a7e5e15a1fb94db88e4272c81dac5f177dd597410b963923b63123a01"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.8.2/shoal-v0.8.2-linux-arm64.tar.gz"
-      sha256 "3dc131c416825e1d63e1ad6b99a55d6185526d59c85efa994a926d13f9995163"
+      url "https://github.com/HN05/shoal/releases/download/v0.9.0/shoal-v0.9.0-linux-arm64.tar.gz"
+      sha256 "7174db6dc40dbbcd8ccafbfd44f26bb804e97a94b92c36a0fe532a42a866b5e6"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.8.2/shoal-v0.8.2-linux-x86_64.tar.gz"
-      sha256 "bbdbe2e646ff50eb91923bd93b6600ca5f08a9252d938925880f91644a1d4272"
+      url "https://github.com/HN05/shoal/releases/download/v0.9.0/shoal-v0.9.0-linux-x86_64.tar.gz"
+      sha256 "f2ae2d1d553561be86866a09d8994bcc2e5f81f9fb35091cab3f56a9dd540e03"
     end
   end
 
@@ -33,6 +33,7 @@ class Shoal < Formula
 
   depends_on "fzf"
   depends_on "git"
+  depends_on "neurosnap/tap/zmx"
   depends_on "worktrunk"
   uses_from_macos "lsof"
 
