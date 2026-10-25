@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: a02f92fbd87b381a86fc673e0305888143283ad9
-  version "0.10.6"
+  # Release commit: 12779a4af0d555af07d7ea22e951600970fa0d7e
+  version "0.10.7"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.10.6/shoal-v0.10.6-macos-arm64.tar.gz"
-      sha256 "cac14ebdb545b64f60046090b21153c41bb5de8cd00192901f0979c0906ef341"
+      url "https://github.com/HN05/shoal/releases/download/v0.10.7/shoal-v0.10.7-macos-arm64.tar.gz"
+      sha256 "a7b105957928a637a6a5b930c553a22d37167fc4c617d3d917c1afb8b1cb06d4"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.10.6/shoal-v0.10.6-macos-x86_64.tar.gz"
-      sha256 "4f220c365cf6d67c77d0fcfb29c023225ebabf5e27f41f106484d2220171d4fa"
+      url "https://github.com/HN05/shoal/releases/download/v0.10.7/shoal-v0.10.7-macos-x86_64.tar.gz"
+      sha256 "3d187b8d030af819b690fab61240f1357caaf1fb2af12de1bffda60c6b51a5b4"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.10.6/shoal-v0.10.6-linux-arm64.tar.gz"
-      sha256 "1551c1276e790d0220f4ec0cb5b1558d197a9470f0b0704271626a671cce4e39"
+      url "https://github.com/HN05/shoal/releases/download/v0.10.7/shoal-v0.10.7-linux-arm64.tar.gz"
+      sha256 "92993dfda731da99b547d0e488ee23a5424db4b7d978e0edd91646aa524a17f1"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.10.6/shoal-v0.10.6-linux-x86_64.tar.gz"
-      sha256 "b0b599308ee9904bac28511e4749e0c4fd194fb0c9871edf62f9f8c1abcb7d96"
+      url "https://github.com/HN05/shoal/releases/download/v0.10.7/shoal-v0.10.7-linux-x86_64.tar.gz"
+      sha256 "131d825e77c3e1fa144d2f0affac050340046c5f2d0b6854301b256b05a366be"
     end
   end
 
@@ -52,7 +52,7 @@ class Shoal < Formula
   def caveats
     <<~EOS
       Start the per-user daemon:
-        shoal install
+        shoal daemon install
 
       Install the agent skills into each tool's existing skill directory:
         shoal skill install
