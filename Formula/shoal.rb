@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: bfe1b7f258369d809392984ce3f9c68a46c6648c
-  version "0.15.2"
+  # Release commit: b03b2924643a923a9a5fb742cdf749d65c26017a
+  version "0.15.3"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.2/shoal-v0.15.2-macos-arm64.tar.gz"
-      sha256 "4c7008849391de49aa0712b2c8b6ab77f55eb422885ff3656336ea9550b4aa43"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-macos-arm64.tar.gz"
+      sha256 "98211cfbab9e21bdf284e73adb5ff530af4eaef020a6101ec0bfe8603d5b1c93"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.2/shoal-v0.15.2-macos-x86_64.tar.gz"
-      sha256 "9894af7d4c7cad7435b9ffb1bfa0118487dc5d68351fcacd631630557e80096c"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-macos-x86_64.tar.gz"
+      sha256 "27cb6ad9f546063e65ad3a4d889bf10eb346c6f13a02dd2a36c1ab3579b39b93"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.2/shoal-v0.15.2-linux-arm64.tar.gz"
-      sha256 "d6224842c85959349993d447017dc5a0909017eee1eb523e7ba1c8f4c3cd81f7"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-linux-arm64.tar.gz"
+      sha256 "3950ab0ea6cf7b0c2d400b7ecbdf2b6df489191de1b1a2e9dc5074f77ab70dce"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.2/shoal-v0.15.2-linux-x86_64.tar.gz"
-      sha256 "4ab3e73aafa98bcdeaff573a4f8a20cddce0ba170b6cc6694f0da27b230fadba"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-linux-x86_64.tar.gz"
+      sha256 "beb823edc2475d0c5baf1792fdd6455f48f6f32ab9153b02901d6cd7510143e5"
     end
   end
 
@@ -66,15 +66,12 @@ class Shoal < Formula
   test do
     system "codesign", "--verify", "--strict", libexec/"Shoal.app" if OS.mac?
     assert_match "shoal", shell_output("#{bin}/shoal --version")
-    assert_match "name: shoal-worker", shell_output("#{bin}/shoal skill")
-    assert_match "name: shoal-orchestrator", shell_output("#{bin}/shoal skill orchestrator")
+    assert_match "name: shoal", shell_output("#{bin}/shoal skill")
     ENV["HOME"] = testpath.to_s
     ENV.delete "SHOAL_SCOPE_TOKEN"
     system bin/"shoal", "skill", "install", "codex"
-    %w[shoal-worker shoal-orchestrator].each do |skill|
-      installed = testpath/".agents/skills/#{skill}/SKILL.md"
-      refute_predicate installed, :symlink?
-      assert_equal (share/"shoal/skills/#{skill}/SKILL.md").read, installed.read
-    end
+    installed = testpath/".agents/skills/shoal/SKILL.md"
+    refute_predicate installed, :symlink?
+    assert_equal (share/"shoal/skills/shoal/SKILL.md").read, installed.read
   end
 end
