@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: b03b2924643a923a9a5fb742cdf749d65c26017a
-  version "0.15.3"
+  # Release commit: ce6d51b4f2f54387e442f6776827399216526e02
+  version "0.15.4"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-macos-arm64.tar.gz"
-      sha256 "98211cfbab9e21bdf284e73adb5ff530af4eaef020a6101ec0bfe8603d5b1c93"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.4/shoal-v0.15.4-macos-arm64.tar.gz"
+      sha256 "a4259d04396f394cf16d782b6964d1cf5af296856cec46766fc2941365efb65a"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-macos-x86_64.tar.gz"
-      sha256 "27cb6ad9f546063e65ad3a4d889bf10eb346c6f13a02dd2a36c1ab3579b39b93"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.4/shoal-v0.15.4-macos-x86_64.tar.gz"
+      sha256 "fb2f21d27004afc5c2e7fa89b6cd1f61d6bc0301e4394cd6456796eb52dcc4a6"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-linux-arm64.tar.gz"
-      sha256 "3950ab0ea6cf7b0c2d400b7ecbdf2b6df489191de1b1a2e9dc5074f77ab70dce"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.4/shoal-v0.15.4-linux-arm64.tar.gz"
+      sha256 "83a4db62d6180c9df8220e2262b6fb6710af4507bfc42ddc1a8218b92ac7a890"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.3/shoal-v0.15.3-linux-x86_64.tar.gz"
-      sha256 "beb823edc2475d0c5baf1792fdd6455f48f6f32ab9153b02901d6cd7510143e5"
+      url "https://github.com/HN05/shoal/releases/download/v0.15.4/shoal-v0.15.4-linux-x86_64.tar.gz"
+      sha256 "d2b078b9ff03db3bf9c9e19dcbb2b003a93a7ab9537b4c1296ec8e246392751e"
     end
   end
 
