@@ -1,34 +1,33 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 4fc64bb0fe6c3e8b448805572b1f05fdf2a0573a
-  version "0.15.8"
+  # Release commit: 988a647f7e8f8573ff203ca7b0903c623d696b97
+  version "0.16.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.8/shoal-v0.15.8-macos-arm64.tar.gz"
-      sha256 "248a4c0c23092d303bde2d42102511886373c31ffcc0e44cac0cc820f6aefc8c"
+      url "https://github.com/HN05/shoal/releases/download/v0.16.0/shoal-v0.16.0-macos-arm64.tar.gz"
+      sha256 "83b07b86ee06e0ac433567c6eb1c56d99103356d343d827e33c5c0689a02788b"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.8/shoal-v0.15.8-macos-x86_64.tar.gz"
-      sha256 "15c8ac3cc65d79cce19d25d4b8f3398a907d2a5abdc589ded3b71eb8dafe0a1a"
+      url "https://github.com/HN05/shoal/releases/download/v0.16.0/shoal-v0.16.0-macos-x86_64.tar.gz"
+      sha256 "2e0afc420ad83114dceb74072b6f0205e016b03b200f7c9ede112388ea07b9d4"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.8/shoal-v0.15.8-linux-arm64.tar.gz"
-      sha256 "8a499ca8d038d8152e1f792231162b4a0ea6d530addf976d28bbea931afe775d"
+      url "https://github.com/HN05/shoal/releases/download/v0.16.0/shoal-v0.16.0-linux-arm64.tar.gz"
+      sha256 "f8fb76112abe250452f980b0734eb7e1bbd936d33f6b9e845e626755d68b5b59"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.15.8/shoal-v0.15.8-linux-x86_64.tar.gz"
-      sha256 "5e4f6c2304c3918000a4ab9700c972a7a4e45207a32fdbbb56a0bb4a25c8866d"
+      url "https://github.com/HN05/shoal/releases/download/v0.16.0/shoal-v0.16.0-linux-x86_64.tar.gz"
+      sha256 "8638f10afc51c149c3bb4cb3208f4d1d7ce7caac20e55367ead715b48a35642a"
     end
   end
 
   depends_on "fzf"
   depends_on "git"
-  depends_on "worktrunk"
 
   def install
     # macOS keeps privacy grants for an app bundle across upgrades, but for a
@@ -57,8 +56,11 @@ class Shoal < Formula
 
       Later shoal commands keep installed skills current.
 
-      Agents started from a terminal run in zmx sessions by default:
+      Agents started from a terminal run in zmx 1.0.1 or later by default:
         brew install neurosnap/tap/zmx
+      Sessions an older zmx started are unreachable after an upgrade, so
+      stop their agents with `shoal stop` before upgrading zmx and resume
+      them after with `shoal resume`.
     EOS
   end
 
