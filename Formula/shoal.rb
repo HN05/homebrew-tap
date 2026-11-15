@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 3a6448793c2e606e6f76f7222832a56be4712ee8
-  version "0.16.1"
+  # Release commit: f542bc8036a2f643bac77912ea367518011ab7ea
+  version "0.17.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.16.1/shoal-v0.16.1-macos-arm64.tar.gz"
-      sha256 "394627b3b319be41b2854a524fa469caaab29d636248fa959f9963e16624c0b4"
+      url "https://github.com/HN05/shoal/releases/download/v0.17.1/shoal-v0.17.1-macos-arm64.tar.gz"
+      sha256 "62ca74143d18142c1c8035402ee88be59044857cc3565b03178af212b6812b67"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.16.1/shoal-v0.16.1-macos-x86_64.tar.gz"
-      sha256 "b7bf17f185b6334c4cf20222b73aa2a1a227c90d312d92f04482548b1ffa652d"
+      url "https://github.com/HN05/shoal/releases/download/v0.17.1/shoal-v0.17.1-macos-x86_64.tar.gz"
+      sha256 "dee1aeeb8b1ed6b90cfce76afd29db20ff12fe980441984928fcd35c4cf3d7a5"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.16.1/shoal-v0.16.1-linux-arm64.tar.gz"
-      sha256 "4a4d738fabe6cb7f535e2dece164ad62b8e76132161a27f3a0dc87e251c7422f"
+      url "https://github.com/HN05/shoal/releases/download/v0.17.1/shoal-v0.17.1-linux-arm64.tar.gz"
+      sha256 "b26fdfd14faf84cc6d85c44021190cdc900d97e64587ce7d2b247f7518ef1cef"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.16.1/shoal-v0.16.1-linux-x86_64.tar.gz"
-      sha256 "f66c90a416840b1d85e7a5f5309bcef37da0e0984302435e5a225b33aab5c6ba"
+      url "https://github.com/HN05/shoal/releases/download/v0.17.1/shoal-v0.17.1-linux-x86_64.tar.gz"
+      sha256 "31d342ade817a03fa0ed9d37f476bbbfe30da8220c101784a9cd5dec9cb4af49"
     end
   end
 
@@ -60,7 +60,7 @@ class Shoal < Formula
         brew install neurosnap/tap/zmx
       Sessions an older zmx started are unreachable after an upgrade, so
       stop their agents with `shoal stop` before upgrading zmx and resume
-      them after with `shoal resume`.
+      them after with `shoal restore`.
     EOS
   end
 
