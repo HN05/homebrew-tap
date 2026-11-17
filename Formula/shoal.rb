@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: 7c1660606846d0c6409ed132eed9961c4db5586e
-  version "0.18.0"
+  # Release commit: 8c06645add4e4818e100269e25f01804d0e07562
+  version "0.18.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.18.0/shoal-v0.18.0-macos-arm64.tar.gz"
-      sha256 "8b81031c56f42e7588730424cbb13d537ab547f9c6b683ff01d354feb02367d4"
+      url "https://github.com/HN05/shoal/releases/download/v0.18.1/shoal-v0.18.1-macos-arm64.tar.gz"
+      sha256 "576f6bb6365a2660f0f0693f759827e13b1bdc96a4ed0c473565552425186c70"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.18.0/shoal-v0.18.0-macos-x86_64.tar.gz"
-      sha256 "74a33256b2d6ee23db8e60e0f2471c8c810887016992a2d753702128a5a61481"
+      url "https://github.com/HN05/shoal/releases/download/v0.18.1/shoal-v0.18.1-macos-x86_64.tar.gz"
+      sha256 "27228d0ae81dc70e6fdbb663d409704b3059bc5dc5240e4c84ce907884562fba"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.18.0/shoal-v0.18.0-linux-arm64.tar.gz"
-      sha256 "4d6c08e16e14c017ed09547c88715868677e7f1cda892b93a7dfd48327de3108"
+      url "https://github.com/HN05/shoal/releases/download/v0.18.1/shoal-v0.18.1-linux-arm64.tar.gz"
+      sha256 "e5067559e8e31ca93f81befd8b43c0b61595e4e03ca631fc7ac43dab0ac64760"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.18.0/shoal-v0.18.0-linux-x86_64.tar.gz"
-      sha256 "ccffe0b1675052d115019cd9195a896713d693fdb4de9d27c79203839ced9426"
+      url "https://github.com/HN05/shoal/releases/download/v0.18.1/shoal-v0.18.1-linux-x86_64.tar.gz"
+      sha256 "b1b29ec6b128feee34c99525a5ebcf0f34bbb3317ccc86eda7fbc064b83eca5e"
     end
   end
 
@@ -41,27 +41,6 @@ class Shoal < Formula
     end
     (share/"shoal").install "skills"
     (libexec/"shoal-skills").make_symlink opt_share/"shoal/skills"
-  end
-
-  def caveats
-    <<~EOS
-      Start the per-user daemon:
-        shoal daemon install
-
-      Install the agent skills into each tool's existing skill directory:
-        shoal skill install
-
-      Install them for one tool, creating its skill directory:
-        shoal skill install claude
-
-      Later shoal commands keep installed skills current.
-
-      Agents started from a terminal run in zmx 1.0.1 or later by default:
-        brew install neurosnap/tap/zmx
-      Sessions an older zmx started are unreachable after an upgrade, so
-      stop their agents with `shoal stop` before upgrading zmx and resume
-      them after with `shoal restore`.
-    EOS
   end
 
   test do
