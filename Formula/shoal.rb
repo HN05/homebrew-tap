@@ -1,28 +1,28 @@
 class Shoal < Formula
   desc "Local workspaces and resource allocation for coding agents"
   homepage "https://github.com/HN05/shoal"
-  # Release commit: fe034d77aebbe8fac47ffb3ba112fc21b221a979
-  version "0.21.1"
+  # Release commit: a33a450cc9524321b57a91268a2c7e06806d0ba0
+  version "0.22.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.21.1/shoal-v0.21.1-macos-arm64-app.tar.gz"
-      sha256 "dc7ddb3840ed8f1c6aaef49e4dc36ffe2efdfecb86abdc12aad9755a10c73e5b"
+      url "https://github.com/HN05/shoal/releases/download/v0.22.0/shoal-v0.22.0-macos-arm64-app.tar.gz"
+      sha256 "010fc441b4cffe7fd4daf449d54fd88b0d9635f50f471c56ad5632e386460342"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.21.1/shoal-v0.21.1-macos-x86_64-app.tar.gz"
-      sha256 "f49490ee71483799d5c5cfd1c0b1f590cf4ab9fdb1e44cb034999ed70f38bcc0"
+      url "https://github.com/HN05/shoal/releases/download/v0.22.0/shoal-v0.22.0-macos-x86_64-app.tar.gz"
+      sha256 "428891ce84d2f38208fae826de3589f11e9fb81c4023c351dc2c1c3b6a51fb8a"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/HN05/shoal/releases/download/v0.21.1/shoal-v0.21.1-linux-arm64.tar.gz"
-      sha256 "9720d8909b132e0da0dd2a65262ac24340d9708820eea8c45e2b5f95f56d9044"
+      url "https://github.com/HN05/shoal/releases/download/v0.22.0/shoal-v0.22.0-linux-arm64"
+      sha256 "f9f813917993a489b5f8bcbc406bbd1bfb1aba0cfed941817151956f4c16145a"
     end
     on_intel do
-      url "https://github.com/HN05/shoal/releases/download/v0.21.1/shoal-v0.21.1-linux-x86_64.tar.gz"
-      sha256 "704f7c0b7eb46cb80b4d89841d413f4b0d94b33f3203a19732c07692ad6e139c"
+      url "https://github.com/HN05/shoal/releases/download/v0.22.0/shoal-v0.22.0-linux-x86_64"
+      sha256 "6692dbd32e0f07090079565843b6dbad0c0972eff28689f4c4988ffa5290b14f"
     end
   end
 
@@ -36,11 +36,11 @@ class Shoal < Formula
       libexec.install "Shoal.app"
       bin.install_symlink libexec/"Shoal.app/Contents/MacOS/shoal"
     else
-      libexec.install "shoal"
+      # Linux downloads the bare binary, staged under its release name.
+      libexec.install Dir["shoal-v*"].fetch(0) => "shoal"
+      (libexec/"shoal").chmod 0755
       bin.install_symlink libexec/"shoal"
     end
-    (share/"shoal").install "skills"
-    (libexec/"shoal-skills").make_symlink opt_share/"shoal/skills"
   end
 
   test do
@@ -52,6 +52,6 @@ class Shoal < Formula
     system bin/"shoal", "skill", "install", "codex"
     installed = testpath/".agents/skills/shoal/SKILL.md"
     refute_predicate installed, :symlink?
-    assert_equal (share/"shoal/skills/shoal/SKILL.md").read, installed.read
+    assert_equal shell_output("#{bin}/shoal skill"), installed.read
   end
 end
